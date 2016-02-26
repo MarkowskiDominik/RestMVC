@@ -47,8 +47,8 @@ public class BookServiceImpl implements BookService {
     }
 
 	@Override
-	public BookTo delete(BookTo bookTo) {
-		// TODO Auto-generated method stub
-		return null;
+    @Transactional(readOnly = false)
+	public void delete(BookTo book) {
+        bookRepository.delete(BookMapper.map(book));
 	}
 }

@@ -19,6 +19,11 @@ public class BookRestService {
     public List<BookTo> findBooksByTitle(@RequestParam("titlePrefix") String titlePrefix) {
         return bookService.findBooksByTitle(titlePrefix);
     }
+    
+    @RequestMapping(value = "/books-by-author", method = RequestMethod.GET)
+    public List<BookTo> findBooksByAuthor(@RequestParam("authorPrefix") String authorPrefix) {
+    	return bookService.findBooksByAuthor(authorPrefix);
+    }
 
     @RequestMapping(value = "/book", method = RequestMethod.POST)
     public BookTo saveBook(@RequestBody BookTo book) {
