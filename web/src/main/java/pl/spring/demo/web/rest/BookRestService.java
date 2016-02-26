@@ -29,4 +29,14 @@ public class BookRestService {
     public BookTo saveBook(@RequestBody BookTo book) {
         return bookService.saveBook(book);
     }
+    
+    @RequestMapping(value = "/book", method = RequestMethod.PATCH)
+    public BookTo updateBook(@RequestBody BookTo book) {
+    	return bookService.updateBook(book);
+    }
+    
+    @RequestMapping(value = "/book", method = RequestMethod.DELETE)
+    public void deleteBook(@RequestBody BookTo book) {
+    	bookService.deleteBook(book);
+    }
 }

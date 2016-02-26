@@ -15,40 +15,52 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class BookServiceImpl implements BookService {
 
-    @Autowired
-    private BookRepository bookRepository;
+	@Autowired
+	private BookRepository bookRepository;
 
-    @Override
-    public List<BookTo> findAllBooks() {
-        return BookMapper.map2To(bookRepository.findAll());
-    }
+	@Override
+	public List<BookTo> findAllBooks() {
+		return BookMapper.map2To(bookRepository.findAll());
+	}
 
-    @Override
-    public List<BookTo> findBooksByTitle(String title) {
-        return BookMapper.map2To(bookRepository.findBookByTitle(title));
-    }
+	@Override
+	public List<BookTo> findBooksByTitle(String title) {
+		return BookMapper.map2To(bookRepository.findBookByTitle(title));
+	}
 
-    @Override
-    public List<BookTo> findBooksByAuthor(String author) {
-        return BookMapper.map2To(bookRepository.findBookByAuthor(author));
-    }
+	@Override
+	public List<BookTo> findBooksByAuthor(String author) {
+		return BookMapper.map2To(bookRepository.findBookByAuthor(author));
+	}
 
 	@Override
 	public BookTo getOne(Long id) {
-        return BookMapper.map(bookRepository.getOne(id));
+		return BookMapper.map(bookRepository.getOne(id));
 	}
 
-    @Override
-    @Transactional(readOnly = false)
-    public BookTo saveBook(BookTo book) {
-        BookEntity entity = BookMapper.map(book);
-        entity = bookRepository.save(entity);
-        return BookMapper.map(entity);
-    }
+	@Override
+	@Transactional(readOnly = false)
+	public BookTo saveBook(BookTo book) {
+		BookEntity entity = BookMapper.map(book);
+		entity = bookRepository.save(entity);
+		return BookMapper.map(entity);
+	}
 
 	@Override
-    @Transactional(readOnly = false)
-	public void delete(BookTo book) {
-        bookRepository.delete(BookMapper.map(book));
+	@Transactional(readOnly = false)
+	public BookTo updateBook(BookTo book) {
+//		BookEntity entity = BookMapper.map(book);
+//		bookRepository.update(entity.getId(), entity.getTitle(), entity.getAuthors());
+		BookEntity entity = bookRepository.getOne(book.getId());
+		entity.setTitle(book.getTitle());
+		entity.setAuthors(book.getAuthors());
+		return BookMapper.map(entity);
+	}
+
+	@Override
+	@Transactional(readOnly = false)
+	public BookTo deleteBook(BookTo book) {
+		bookRepository.delete(BookMapper.map(book));
+		return book;
 	}
 }

@@ -28,7 +28,7 @@ public class BookController {
     public String deleteBook(Map<String, Object> params, @RequestParam("id") Long id) {
     	System.out.println(id);
     	BookTo bookTo = bookService.getOne(id);
-    	bookService.delete(bookTo);
+    	bookService.deleteBook(bookTo);
         params.put("deleteBook", bookTo.getTitle());
         return "confirmedDeletion";
     }
