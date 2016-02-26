@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head lang="en">
+<meta charset="UTF-8" />
+<title>Potwierdzenie usunięcia książki</title>
+<link rel="stylesheet" th:href="@{/static/application.css}"	href="/static/application.css" />
+</head>
+<body>
+	<p th:inline="text">
+		Książka o tytule <th th:text="${deleteBook}">title</th> została usunięta
+	</p>
+	<a th:href="@{/books}">Powrót</a>
+</body>
+</html>

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import pl.spring.demo.service.BookService;
 import pl.spring.demo.to.BookTo;
 
@@ -20,5 +22,14 @@ public class BookController {
         final List<BookTo> allBooks = bookService.findAllBooks();
         params.put("books", allBooks);
         return "bookList";
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String deleteBook(Map<String, Object> params, @RequestParam("id") Long id) {
+    	System.out.println(id);
+    	BookTo bookTo = bookService.getOne(id);
+    	bookService.delete(bookTo);
+        params.put("deleteBook", bookTo.getTitle());
+        return "confirmedDeletion";
     }
 }
