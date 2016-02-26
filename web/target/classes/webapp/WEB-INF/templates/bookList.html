@@ -3,13 +3,14 @@
 <head lang="en">
 <meta charset="UTF-8" />
 <title>Lista książek</title>
+<link rel="stylesheet" th:href="@{/static/application.css}"	href="/static/application.css" />
 </head>
 <body>
-	<table width="50%" border="10">
+	<table id="table" width="50%" border="10">
 		<tr>
-			<th>ID</th>
-			<th>Tytuł</th>
-			<th>Autorzy</th>
+			<th><h1>Id</h1></th>
+			<th><h1>Tytuł</h1></th>
+			<th><h1>Autorzy</h1></th>
 			<th></th>
 		</tr>
 		<tr th:each="book : ${books}">
@@ -17,7 +18,9 @@
 			<td th:text="${book.title}">title</td>
 			<td th:text="${book.authors}">authors</td>
 			<th>
-				<a th:href="@{/delete(id=${book.id})}">Usuń</a>
+				<form th:action="@{/delete}" method="get">
+					<button type="submit" name="id" th:value="@{${book.id}}">Usuń</button>
+				</form>
 			</th>
 		</tr>
 	</table>

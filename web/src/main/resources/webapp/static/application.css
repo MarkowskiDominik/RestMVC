@@ -1,3 +1,52 @@
 .sample {
-    color: red;
+	color: red;
+}
+
+h1 {
+	font-family: "Arial";
+	font-size: 20px;
+	color: blue;
+}
+
+button {
+	font-family: Arial;
+	font-size: 20px;
+	color: #000000;
+	background: #c0c0c0;
+}
+
+button#return {
+	font-family: Arial;
+	font-size: 20px;
+	color: #000000;
+	background: #ff8000;
+	padding: 10px 20px 10px 20px;
+	position: relative;
+	top: 20px;
+	left: 20px;
+}
+
+#table {
+	font-family: "Arial";
+	font-size: 16px;
+	color: black;
+	border-bottom-style: outset;
+	border: double;
+}
+
+#table
+th {
+	font-family: "Arial";
+	font-size: 16px;
+	font-weight: bold;
+	font-style: oblique;
+	color: black;
+	text-align: center;
+}
+
+#table
+td {
+	font-family: "Arial";
+	font-size: 16px;
+	color: black;
 }

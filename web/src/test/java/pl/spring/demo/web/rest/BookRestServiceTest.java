@@ -14,6 +14,8 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import pl.spring.demo.entity.BookEntity;
 import pl.spring.demo.service.BookService;
 import pl.spring.demo.to.BookTo;
 import pl.spring.demo.web.utils.FileUtils;
@@ -93,11 +95,15 @@ public class BookRestServiceTest {
 		// given
 		File file = FileUtils.getFileFromClasspath("classpath:pl/spring/demo/web/json/bookToUpdate.json");
 		String json = FileUtils.readFileToString(file);
+		BookTo bookTo = new BookTo(1L, "newTitle", "newAuthor");
+		Mockito.when(bookService.updateBook(bookTo)).thenReturn(bookTo);
 		// when
 		ResultActions response = this.mockMvc.perform(patch("/book")
 				.accept(MediaType.APPLICATION_JSON)
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(json.getBytes()));
+
+		Mockito.verify(bookService).updateBook(bookTo);
 		// then
 		response.andExpect(status().isOk());
 	}

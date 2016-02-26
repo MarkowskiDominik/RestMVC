@@ -9,6 +9,9 @@
 	<p th:inline="text">
 		Książka o tytule <th th:text="${deleteBook}">title</th> została usunięta
 	</p>
-	<a th:href="@{/books}">Powrót</a>
+	
+	<form th:action="@{/books}" method="get">
+		<button id="return">Powrót</button>
+	</form>
 </body>
 </html>
