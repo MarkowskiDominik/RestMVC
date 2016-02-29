@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head lang="en">
+<meta charset="UTF-8" />
+<title>Dodanie nowej książki</title>
+<link rel="stylesheet" th:href="@{/static/application.css}"	href="/static/application.css" />
+</head>
+<body>
+	<section class="container">
+		<form th:attr = "book = ${newBook}" th:formaction="@{/add}">
+			<fieldset>
+				<legend>Dodaj nową książkę</legend>
+				<p th:text="${newBook.id}" />
+				<p th:text="${newBook.title}" />
+				<p th:text="${newBook.authors}" />
+				
+				<label for="title">Tytuł</label>
+				<input id="title" th:field="${newBook.title}" type="text" />
+
+				<label for="authors">Autorzy</label>
+				<input id="authors" th:field="${newBook.authors}" type="text" />
+
+				<input type="submit" formmethod="post" th:formaction="@{/add}" value="Dodaj" />
+			</fieldset>
+		</form>
+	</section>
+	<form th:action="@{/books}" method="get">
+		<button id="return">Powrót</button>
+	</form>
+</body>
+</html>
