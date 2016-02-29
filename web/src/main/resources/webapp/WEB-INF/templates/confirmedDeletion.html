@@ -7,7 +7,7 @@
 </head>
 <body>
 	<p th:inline="text">
-		Książka o tytule <th th:text="${deleteBook}">title</th> została usunięta
+		<h1>Książka o tytule "<th th:text="${deleteBook}">title</th>" została usunięta</h1>
 	</p>
 	
 	<form th:action="@{/books}" method="get">
