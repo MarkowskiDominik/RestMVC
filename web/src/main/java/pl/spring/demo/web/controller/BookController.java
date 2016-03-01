@@ -4,15 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.spring.demo.service.BookService;
 import pl.spring.demo.to.BookTo;
 
-import java.awt.print.Book;
-import java.security.KeyStore.Entry;
 import java.util.List;
 import java.util.Map;
 

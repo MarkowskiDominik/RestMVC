@@ -3,6 +3,7 @@ package pl.spring.demo.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "BOOK")
 public class BookEntity implements Serializable {
