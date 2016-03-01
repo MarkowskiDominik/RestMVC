@@ -46,4 +46,17 @@ public class BookController {
         params.put("deleteBook", bookTo.getTitle());
         return "confirmedDeletion";
     }
+    
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    public String updateBook(Map<String, Object> params, @PathVariable("id") Long id) {
+    	BookTo bookTo = bookService.getOne(id);
+        params.put("updateBook", bookTo);
+        return "updateBook";
+    }
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String updateBookForm(Map<String, Object> params, @ModelAttribute("updateBook") BookTo bookTo) {
+	   	bookService.updateBook(bookTo);
+		return "redirect:/books";
+	}
 }

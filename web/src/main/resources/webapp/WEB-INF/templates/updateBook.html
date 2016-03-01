@@ -2,29 +2,29 @@
 <html xmlns:th="http://thymeleaf.org">
 <head lang="en">
 <meta charset="UTF-8" />
-<title>Dodanie nowej ksiązki</title>
+<title>Edycja książki</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 </head>
 <body>
 	<div class="container">
-		<h3>Dodaj nową książkę</h3>
+		<h3>Edycja danych książki</h3>
 		<form class="form-horizontal" role="form">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="title">Tytuł: </label>
 				<div class="col-sm-10">
-					<input th:field="${newBook.title}" type="text" id="title"/>
+					<input th:field="${updateBook.title}" type="text" id="title"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="title">Autorzy: </label>
 				<div class="col-sm-10">
-					<input th:field="${newBook.authors}" type="text" id="authors"/>
+					<input th:field="${updateBook.authors}" type="text" id="authors"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-success btn-md" formmethod="post" th:formaction="@{/add}">
-						<span class="glyphicon glyphicon-plus"></span> Dodaj
+					<button type="submit" class="btn btn-info btn-md" formmethod="post" th:formaction="@{/update}">
+						<span class="glyphicon glyphicon-edit"></span> Aktualizuj
 					</button>
 				</div>
 			</div>

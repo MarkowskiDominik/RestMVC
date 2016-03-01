@@ -2,16 +2,20 @@
 <html xmlns:th="http://thymeleaf.org">
 <head lang="en">
 <meta charset="UTF-8" />
-<title>Potwierdzenie usunięcia książki</title>
-<link rel="stylesheet" th:href="@{/static/application.css}"	href="/static/application.css" />
+<title>Potwierdzenie usunięcia</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 </head>
 <body>
-	<p th:inline="text">
-		<h1>Książka o tytule "<th th:text="${deleteBook}">title</th>" została usunięta</h1>
-	</p>
-	
-	<form th:action="@{/books}" method="get">
-		<button id="return">Powrót</button>
-	</form>
+	<div class="container">
+		<p th:inline="text">
+			<h3>Książka o tytule "[[${deleteBook}]]" została usunięta.</h3>
+		</p>
+
+		<form>
+			<button type="submit" class="btn btn-danger btn-sm" th:formaction="@{/books}" formmethod="get">
+				<span class="glyphicon glyphicon-hand-left"></span> Powrót
+			</button>
+		</form>
+	</div>
 </body>
 </html>
