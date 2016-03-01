@@ -28,9 +28,20 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
+				<div class="col-sm-offset-2 col-sm-1 pull-left">
 					<button type="submit" class="btn btn-primary btn-md" formmethod="get" th:formaction="@{/books}">
 						<span class="glyphicon glyphicon-search"></span> Filtruj
+					</button>
+				</div>
+				<script type="text/javascript">
+				    function clearInputs(){
+				        title.value="";
+				        author.value="";
+				    }
+			    </script>
+				<div class="col-sm-offset-3">
+					<button type="submit" class="btn btn-primary btn-md" formmethod="get" th:formaction="@{/books}" onclick="clearInputs()">
+						<span class="glyphicon glyphicon-refresh"></span> Resetuj
 					</button>
 				</div>
 			</div>
