@@ -79,13 +79,21 @@ public class BookRestServiceTest {
 		// given
 		File file = FileUtils.getFileFromClasspath("classpath:pl/spring/demo/web/json/bookToSave.json");
 		String json = FileUtils.readFileToString(file);
+    	BookTo bookTo = new BookTo(4L, "Nowa książka", "Nowy autor");
+    	Mockito.when(bookService.saveBook(bookTo)).thenReturn(bookTo);
+    	
 		// when
 		ResultActions response = this.mockMvc.perform(post("/book")
 				.accept(MediaType.APPLICATION_JSON)
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(json.getBytes()));
+		Mockito.verify(bookService).saveBook(bookTo);
+		
 		// then
-		response.andExpect(status().isOk());
+		response.andExpect(status().isOk())
+    		.andExpect(jsonPath("id").value(bookTo.getId().intValue()))
+    		.andExpect(jsonPath("title").value(bookTo.getTitle()))
+    		.andExpect(jsonPath("authors").value(bookTo.getAuthors()));
 	}
 
 	@Test
@@ -93,17 +101,21 @@ public class BookRestServiceTest {
 		// given
 		File file = FileUtils.getFileFromClasspath("classpath:pl/spring/demo/web/json/bookToUpdate.json");
 		String json = FileUtils.readFileToString(file);
-		BookTo bookTo = new BookTo(1L, "newTitle", "newAuthor");
+    	BookTo bookTo = new BookTo(2L, "Nowa książka", "Nowy autor");
 		Mockito.when(bookService.updateBook(bookTo)).thenReturn(bookTo);
+		
 		// when
 		ResultActions response = this.mockMvc.perform(patch("/book")
 				.accept(MediaType.APPLICATION_JSON)
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(json.getBytes()));
-
 		Mockito.verify(bookService).updateBook(bookTo);
+		
 		// then
-		response.andExpect(status().isOk());
+		response.andExpect(status().isOk())
+			.andExpect(jsonPath("id").value(bookTo.getId().intValue()))
+			.andExpect(jsonPath("title").value(bookTo.getTitle()))
+			.andExpect(jsonPath("authors").value(bookTo.getAuthors()));
 	}
 
 	@Test
@@ -111,11 +123,13 @@ public class BookRestServiceTest {
 		// given
 		File file = FileUtils.getFileFromClasspath("classpath:pl/spring/demo/web/json/bookToDelete.json");
 		String json = FileUtils.readFileToString(file);
+		
 		// when
 		ResultActions response = this.mockMvc.perform(delete("/book")
 				.accept(MediaType.APPLICATION_JSON)
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(json.getBytes()));
+		
 		// then
 		response.andExpect(status().isOk());
 	}
