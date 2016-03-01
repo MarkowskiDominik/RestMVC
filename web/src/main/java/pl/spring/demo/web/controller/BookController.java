@@ -18,12 +18,13 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @RequestMapping(value = "/books", method = RequestMethod.GET)
-    public String bookList(Map<String, Object> params) {
-        final List<BookTo> allBooks = bookService.findAllBooks();
-        params.put("books", allBooks);
-        return "bookList";
-    }
+	@RequestMapping(value = "/books", method = RequestMethod.GET)
+	public String bookList(Map<String, Object> params, @ModelAttribute("title") String title,
+			@ModelAttribute("authors") String authors) {
+		final List<BookTo> books = bookService.findBooksByTitleAndAuthor(title, authors);
+		params.put("books", books);
+		return "bookList";
+	}
     
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addBook(Map<String, Object> params, @ModelAttribute("newBook") BookTo bookTo) {

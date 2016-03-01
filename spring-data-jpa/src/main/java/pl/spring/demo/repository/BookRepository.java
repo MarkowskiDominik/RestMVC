@@ -16,6 +16,11 @@ public interface BookRepository extends JpaRepository<BookEntity, Long> {
 	@Query("select book from BookEntity book where upper(book.authors) like concat('%', upper(:author), '%')")
 	public List<BookEntity> findBookByAuthor(@Param("author") String author);
 
+	@Query("select book from BookEntity book where"
+			+ " upper(book.title) like concat('%', concat(upper(:title), '%')) and"
+			+ " upper(book.authors) like concat('%', concat(upper(:author), '%'))")
+	public List<BookEntity> findBookByTitleAndAuthor(@Param("title") String title, @Param("author") String author);
+	
 	@Modifying
 	@Query("update BookEntity book SET book.title=:title, book.authors=:authors WHERE book.id=:id")
 	public void update(@Param("id") Long id, @Param("title") String title, @Param("authors") String authors);
