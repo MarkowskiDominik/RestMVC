@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head lang="en">
+<meta charset="UTF-8" />
+<title>Potwierdzenie usunięcia</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+</head>
+<body>
+	<section>
+		<div class="jumbotron">
+			<div class="container">
+				<h1>
+					Page Not Found <small><font face="Tahoma" color="red">Error	404</font></small>
+				</h1>
+			</div>
+		</div>
+	</section>
+	<div class="container">
+		<p>
+			The page you requested could not be found, either contact your
+			webmaster or try again. Use your browsers <b>Back</b> button to
+			navigate to the page you have prevously come from
+		</p>
+		<p>
+			<b>Or you could just press this neat little button:</b>
+		</p>
+		<form>
+			<button type="submit" class="btn btn-danger btn-sm"	th:formaction="@{/books}" formmethod="get">
+				<span class="glyphicon glyphicon-home"></span> Take Me Home
+			</button>
+		</form>
+	</div>
+</body>
+</html>

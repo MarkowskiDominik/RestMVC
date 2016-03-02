@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import pl.spring.demo.service.BookService;
 import pl.spring.demo.to.BookTo;
 
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -21,8 +20,7 @@ public class BookController {
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
 	public String bookList(Map<String, Object> params, @ModelAttribute("title") String title,
 			@ModelAttribute("authors") String authors) {
-		final List<BookTo> books = bookService.findBooksByTitleAndAuthor(title, authors);
-		params.put("books", books);
+		params.put("books", bookService.findBooksByTitleAndAuthor(title, authors));
 		return "bookList";
 	}
     
@@ -47,8 +45,7 @@ public class BookController {
     
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String updateBook(Map<String, Object> params, @PathVariable("id") Long id) {
-    	BookTo bookTo = bookService.getOne(id);
-        params.put("updateBook", bookTo);
+    	params.put("updateBook", bookService.getOne(id));
         return "updateBook";
     }
 
@@ -56,5 +53,10 @@ public class BookController {
 	public String updateBookForm(Map<String, Object> params, @ModelAttribute("updateBook") BookTo bookTo) {
 	   	bookService.updateBook(bookTo);
 		return "redirect:/books";
+	}
+	
+	@RequestMapping(value = "*", method = RequestMethod.GET)
+	public String error404() {
+		return "error404";
 	}
 }
