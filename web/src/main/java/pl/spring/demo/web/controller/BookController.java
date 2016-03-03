@@ -25,37 +25,36 @@ public class BookController {
 	}
     
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String addBook(Map<String, Object> params, @ModelAttribute("newBook") BookTo bookTo) {
+    public String addBookPage(Map<String, Object> params, @ModelAttribute("newBook") BookTo bookTo) {
     	return "addBook";
     }
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addBookForm(Map<String, Object> params, @ModelAttribute("newBook") BookTo bookTo) {
+	public String addBook(Map<String, Object> params, @ModelAttribute("newBook") BookTo bookTo) {
 	   	bookService.saveBook(bookTo);
 		return "redirect:/books";
 	}
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String deleteBook(Map<String, Object> params, @PathVariable("id") Long id) {
-    	BookTo bookTo = bookService.getOne(id);
-    	bookService.deleteBook(bookTo);
-        params.put("deleteBook", bookTo.getTitle());
+    public String confirmedDeletionPage(Map<String, Object> params, @PathVariable("id") Long id) {
+        params.put("deleteBook", bookService.getOne(id).getTitle());
+    	bookService.deleteBook(bookService.getOne(id));
         return "confirmedDeletion";
     }
     
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-    public String updateBook(Map<String, Object> params, @PathVariable("id") Long id) {
+    public String updateBookpage(Map<String, Object> params, @PathVariable("id") Long id) {
     	params.put("updateBook", bookService.getOne(id));
         return "updateBook";
     }
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updateBookForm(Map<String, Object> params, @ModelAttribute("updateBook") BookTo bookTo) {
+	public String updateBook(Map<String, Object> params, @ModelAttribute("updateBook") BookTo bookTo) {
 	   	bookService.updateBook(bookTo);
 		return "redirect:/books";
 	}
 	
-	@RequestMapping(value = "*", method = RequestMethod.GET)
+	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST })
 	public String error404() {
 		return "error404";
 	}

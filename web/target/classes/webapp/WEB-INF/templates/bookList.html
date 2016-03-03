@@ -60,12 +60,12 @@
 				<td class="col-sm-4" th:text="${book.title}">title</td>
 				<td class="col-sm-4" th:text="${book.authors}">authors</td>
 				<td class="col-sm-2">
-					<form class="pull-left">
+					<form class="pull-left col-sm-6">
 						<button type="submit" class="btn btn-danger btn-sm" th:formaction="@{'/delete/'+${book.id}}" formmethod="get">
 							<span class="glyphicon glyphicon-trash"></span> Usuń
 						</button>
 					</form>
-					<form>
+					<form class="col-sm-6">
 						<button type="submit" class="btn btn-info btn-sm" th:formaction="@{'/update/'+${book.id}}" formmethod="get">
 							<span class="glyphicon glyphicon-edit"></span> Edytuj
 						</button>
