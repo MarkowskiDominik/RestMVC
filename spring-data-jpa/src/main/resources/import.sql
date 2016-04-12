@@ -1,3 +1,12 @@
 insert into book (id, title, authors) values (1, 'Pierwsza książka', 'Jan Kowalski');
 insert into book (id, title, authors) values (2, 'Druga książka', 'Zbigniew Nowak');
 insert into book (id, title, authors) values (3, 'Trzecia książka', 'Janusz Jankowski');
+insert into book (id, title, authors) values (4, 'Saga Tom 1', 'Jan Kowalski');
+insert into book (id, title, authors) values (5, 'Saga Tom 2', 'Jan Kowalski');
+insert into book (id, title, authors) values (6, 'Trylogia Tom 1', 'Janusz Jankowski');
+insert into book (id, title, authors) values (7, 'Trylogia Tom 2', 'Janusz Jankowski');
+insert into book (id, title, authors) values (8, 'Trylogia Tom 3', 'Janusz Jankowski');
+insert into book (id, title, authors) values (9, 'Saga Tom 3', 'Jan Kowalski');
+insert into book (id, title, authors) values (10, 'Nowa książka', 'Zbigniew Nowak');
+insert into book (id, title, authors) values (11, 'Pierwsze Wydanie', 'Zbigniew Nowak');
+insert into book (id, title, authors) values (12, 'Drugie Wydanie', 'Zbigniew Nowak');
